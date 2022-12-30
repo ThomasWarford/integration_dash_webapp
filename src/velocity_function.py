@@ -5,8 +5,9 @@ Created on Dec 29 2022
 
 @author: thomas
 
-Numerical integrators
+Get 'velocity' function of dyanamic system from list of maths strings.
 
+NOTE: The use of eval is not secure.
 """
 
 import numpy as np

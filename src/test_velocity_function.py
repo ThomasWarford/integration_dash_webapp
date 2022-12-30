@@ -1,3 +1,14 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Dec 29 2022
+
+@author: thomas
+
+Tests for velocity_function.py
+"""
+
+
 from velocity_function import get_velocity_function
 import numpy as np
 
