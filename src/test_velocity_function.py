@@ -9,52 +9,49 @@ Tests for velocity_function.py
 """
 
 
-from velocity_function import get_velocity_function
+from solver import Solver
 import numpy as np
 
 
 def test_velocity_function_1D():
-	strings = [
-	'x**3 - 3*x**2 * 4',
-	]
+    strings = [
+        "x**3 - 3*x**2 * 4",
+    ]
 
-	num_dimensions, v_func = get_velocity_function(strings)
+    solver = Solver(strings)
 
+    # num_dimensions, v_func = get_velocity_function(strings)
 
-	assert num_dimensions == 1
-	assert v_func(2.) == -40.
+    assert solver.num_dimensions == 1
+    assert solver.update_rule(2.0) == -40.0
+
 
 def test_velocity_function_2D():
-	strings = [
-	'-y',
-	'-x',
-	]
+    strings = [
+        "-y",
+        "-x",
+    ]
 
-	num_dimensions, v_func = get_velocity_function(strings)
+    solver = Solver(strings)
 
+    assert solver.num_dimensions == 2
+    assert solver.update_rule(1.0, 1.0) == [-1.0, -1.0]
 
-	assert num_dimensions == 2
-	assert v_func(1., 1.) == [-1., -1.]
 
 def test_velocity_function_3D():
-	strings = [
-	'np.cos(np.pi * (x + y)) + z',
-	'- y * np.cos(np.pi * x) - z',
-	'-z'
-	]
+    strings = ["np.cos(np.pi * (x + y)) + z", "- y * np.cos(np.pi * x) - z", "-z"]
 
-	num_dimensions, v_func = get_velocity_function(strings)
+    solver = Solver(strings)
 
-
-	assert num_dimensions == 3
-	assert v_func(.25, .25, 1) == [1., -np.sqrt(2.)/8. - 1, -1.]
+    assert solver.num_dimensions == 3
+    assert solver.update_rule(0.25, 0.25, 1) == [1.0, -np.sqrt(2.0) / 8.0 - 1, -1.0]
 
 
 def main():
-	test_velocity_function_1D()
-	test_velocity_function_2D()
-	test_velocity_function_3D()
+    test_velocity_function_1D()
+    test_velocity_function_2D()
+    test_velocity_function_3D()
 
 
-if __name__ == '__main__':
-	main()
+if __name__ == "__main__":
+    main()

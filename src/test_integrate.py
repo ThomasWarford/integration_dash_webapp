@@ -5,11 +5,10 @@ Created on Dec 29 2022
 
 @author: thomas
 
-Test numerical integrator.
+Test numerical integration of 2D and 3D systems.
 
 """
 
-from velocity_function import get_velocity_function
 from solver import Solver
 import matplotlib.pyplot as plt
 import numpy as np
@@ -28,9 +27,7 @@ def test_circle():
     step_size = 0.1
     final_time = 50
 
-    num_dimensions, v_func = get_velocity_function(circle_strings)
-
-    solver = Solver(num_dimensions, v_func)
+    solver = Solver(circle_strings)
     t, x, sol = solver.integrate(initial_conditions, step_size, final_time)
 
     assert (np.abs(sol.__call__(2 * np.pi) - initial_conditions) <= epsilon).all()
@@ -60,9 +57,7 @@ def test_lorenz_attractor():
     step_size = 0.01
     final_time = 50
 
-    num_dimensions, v_func = get_velocity_function(lorenz_strings)
-
-    solver = Solver(num_dimensions, v_func)
+    solver = Solver(lorenz_strings)
     t1, x1, sol1 = solver.integrate(initial_conditions_1, step_size, final_time)
     t2, x2, sol2 = solver.integrate(initial_conditions_2, step_size, final_time)
 
@@ -75,7 +70,7 @@ def test_lorenz_attractor():
 
 
 def main():
-    # test_circle()
+    test_circle()
     test_lorenz_attractor()  # looks good !
 
 
