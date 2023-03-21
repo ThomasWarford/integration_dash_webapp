@@ -23,7 +23,7 @@ def test_velocity_function_1D():
     # num_dimensions, v_func = get_velocity_function(strings)
 
     assert solver.num_dimensions == 1
-    assert solver.update_rule(2.0) == -40.0
+    assert solver.update_rule(0, 2.0) == -40.0
 
 
 def test_velocity_function_2D():
@@ -35,7 +35,7 @@ def test_velocity_function_2D():
     solver = Solver(strings)
 
     assert solver.num_dimensions == 2
-    assert solver.update_rule(1.0, 1.0) == [-1.0, -1.0]
+    assert solver.update_rule(0, 1.0, 1.0) == [-1.0, -1.0]
 
 
 def test_velocity_function_3D():
@@ -44,7 +44,7 @@ def test_velocity_function_3D():
     solver = Solver(strings)
 
     assert solver.num_dimensions == 3
-    assert solver.update_rule(0.25, 0.25, 1) == [1.0, -np.sqrt(2.0) / 8.0 - 1, -1.0]
+    assert solver.update_rule(0, 0.25, 0.25, 1) == [1.0, -np.sqrt(2.0) / 8.0 - 1, -1.0]
 
 
 def main():

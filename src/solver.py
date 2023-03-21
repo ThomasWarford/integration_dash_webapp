@@ -27,21 +27,21 @@ class Solver:
 
         if self.num_dimensions == 1:
 
-            def update_function_1D(x):
+            def update_function_1D(t, x):
                 return eval(maths_strings[0])
 
             self.update_rule = update_function_1D
 
         if self.num_dimensions == 2:
 
-            def update_function_2D(x, y):
+            def update_function_2D(t, x, y):
                 return [eval(maths_strings[0]), eval(maths_strings[1])]
 
             self.update_rule = update_function_2D
 
         if self.num_dimensions == 3:
 
-            def update_function_3D(x, y, z):
+            def update_function_3D(t, x, y, z):
                 return [
                     eval(maths_strings[0]),
                     eval(maths_strings[1]),
@@ -57,7 +57,7 @@ class Solver:
                 x (array-like): Position
         """
 
-        return self.update_rule(*x)
+        return self.update_rule(t, *x)
 
     def integrate(self, initial_conditions, step_size, total_time):
         """
